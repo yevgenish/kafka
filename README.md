@@ -1,2 +1,2 @@
-# Apache kafka
+# kafka
 Apache kafka
