@@ -1,45 +1,74 @@
-Basic KAFKA Commands for Windows. (Use .sh files for other OS in bin directory).
+# Basic KAFKA Commands for Windows. (Use .sh files for other OS in bin directory).
 
-START ZOOKEEPER
+# Run Windows PowerShell or Command Prompt (CMD). Navigate to kafka folder in C:\kafka.
+cd ..\..\programfilesportable\kafka
+
+
+# START ZOOKEEPER
 .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
 
 
-START KAFKA BROKER
+# START KAFKA BROKER
 .\bin\windows\kafka-server-start.bat .\config\server.properties
 
 
-CREATE TOPIC
+# CREATE TOPIC
 .\bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --create --replication-factor 1 --partitions 3 --topic animals
 
 
-LIST TOPICS
+# LIST TOPICS
 .\bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --list
 
 
-TOPIC DETAILS
+# TOPIC DETAILS
 .\bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --describe --topic animals
 
 
-START CONSOLE PRODUCER
+# START CONSOLE PRODUCER
 .\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic animals
 
 
-START CONSOLE CONSUMER
+# START CONSOLE CONSUMER
 .\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic animals
 
 
-START CONSOLE CONSUMER AND READ MESSAGES FROM BEGINNING
+# START CONSOLE CONSUMER AND READ MESSAGES FROM BEGINNING
 .\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic animals --from-beginning
 
 
-START CONSOLE CONSUMER WITH SPECIFIC CONSUMER GROUP
+# START CONSOLE CONSUMER AND READ MESSAGES FROM SPECIFIC PARTITION 0 FROM BEGINNING
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic animals --partition 0 --from-beginning
+
+
+# START CONSOLE CONSUMER AND READ MESSAGES FROM SPECIFIC PARTITION 0 WITH OFFSET 1
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic animals --partition 0 --offset 1
+
+
+# NOT ALLOWED - START CONSOLE CONSUMER AND READ MESSAGES FROM ALL PARTITIONS WITH OFFSET 0 (FROM BEGINNING).
+# SPECIFIC PARTITION NUMBER REQUIRED, because each partition has its own offsets
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic animals --offset 0
+
+
+# START CONSOLE CONSUMER WITH SPECIFIC CONSUMER GROUP
 .\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic animals --group group_animals --from-beginning
 
 
-LIST CONSUMER GROUPS
+# LIST CONSUMER GROUPS
 .\bin\windows\kafka-consumer-groups.bat --bootstrap-server localhost:9092 --list
 
 
-CONSUMER GROUP DETAILS
+# CONSUMER GROUP DETAILS
 .\bin\windows\kafka-consumer-groups.bat --bootstrap-server localhost:9092 --group group_animals --describe
+
+
+# STOP KAFKA
+.\bin\windows\kafka-server-stop.bat .\config\server.properties
+
+
+# STOP ZOOKEEPER
+.\bin\windows\zookeeper-server-stop.bat .\config\zookeeper.properties
+
+
+# RUN Ctrl+C in Terminal to terminate the command
+# RUN cls to clean window
 
