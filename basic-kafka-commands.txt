@@ -1,0 +1,45 @@
+Basic KAFKA Commands
+
+START ZOOKEEPER
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+
+START KAFKA BROKER
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+
+CREATE TOPIC
+.\bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --create --replication-factor 1 --partitions 3 --topic animals
+
+
+LIST TOPICS
+.\bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --list
+
+
+TOPIC DETAILS
+.\bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --describe --topic animals
+
+
+START CONSOLE PRODUCER
+.\bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic animals
+
+
+START CONSOLE CONSUMER
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic animals
+
+
+START CONSOLE CONSUMER AND READ MESSAGES FROM BEGINNING
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic animals --from-beginning
+
+
+START CONSOLE CONSUMER WITH SPECIFIC CONSUMER GROUP
+.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic animals --group group_animals --from-beginning
+
+
+LIST CONSUMER GROUPS
+.\bin\windows\kafka-consumer-groups.bat --bootstrap-server localhost:9092 --list
+
+
+CONSUMER GROUP DETAILS
+.\bin\windows\kafka-consumer-groups.bat --bootstrap-server localhost:9092 --group group_animals --describe
+
