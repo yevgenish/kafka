@@ -1,4 +1,4 @@
-Basic KAFKA Commands
+Basic KAFKA Commands for Windows. (Use .sh files for other OS in bin directory).
 
 START ZOOKEEPER
 .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
